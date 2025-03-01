@@ -1,0 +1,38 @@
+{% extends 'patient/patientbase.html' %}
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Donor List</h2>
+    <form method="get" class="form-inline mb-3">
+        <label for="location" class="mr-2">Search by Location:</label>
+        <input type="text" name="location" id="location" value="{{ location }}" style="height: 38px; margin-right: 10px; border: 1px solid #ccc;" placeholder="Enter location">
+        <button type="submit" style="height: 38px; margin-right: 10px; background-color: #C12D2D; border-color: #C12D2D;" class="btn btn-primary">Search</button>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Blood Group</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for donor in donors %}
+                <tr>
+                    <td>{{ donor.user }}</td>
+                    <td>{{ donor.bloodgroup }}</td>
+                    <td>{{ donor.address }}</td>
+                    <td>{{ donor.mobile }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">No donors found for this location.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
